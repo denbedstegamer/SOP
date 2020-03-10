@@ -43,11 +43,19 @@ class main
         {
             // Stops the timer, as the keys have now been generated
             SWForKeyGenration.Stop();
-
             SWForDHKE.Stop();
+
             // Prints the time it took to generate the random keyPair
             Write("It took " + SWForKeyGenration.ElapsedMilliseconds + " milliseconds to generate a random key pair." + Environment.NewLine);
             Write("It took " + SWForKeyGenration.ElapsedTicks + " ticks to generate a random key pair." + Environment.NewLine + Environment.NewLine);
+
+            // Prints Person1s private key, which is printed in a big-endian format
+            Write("Person 1s private key is: ");
+            foreach (Byte b in ECDHCNGForPerson1.ExportExplicitParameters(true).D)
+            {
+                Write($"{b} ");
+            }
+            Write(Environment.NewLine + Environment.NewLine);
 
             SWForDHKE.Start();
             // Sets the method used for deriving the different shared keys as an ECDH-hash-function
@@ -72,6 +80,16 @@ class main
             // Creates a CNG (Cryptography Next Genration) implimentiation of the ECDH (Elliptic Curve Diffie-Hellman) algorithm for Person2 with a randomly generated keyPair consisting of both a public and a private key
             using (ECDiffieHellmanCng ECDHCNGForPerson2 = new ECDiffieHellmanCng(keySize))
             {
+                SWForDHKE.Stop();
+
+                // Prints Person2s private key, which is printed in a big-endian format
+                Write("Person 2s private key is: ");
+                foreach (Byte b in ECDHCNGForPerson2.ExportExplicitParameters(true).D)
+                {
+                    Write($"{b} ");
+                }
+                Write(Environment.NewLine + Environment.NewLine);
+
                 // Sets the method used for deriving the different shared keys as an ECDH-hash-function
                 ECDHCNGForPerson2.KeyDerivationFunction = ECDiffieHellmanKeyDerivationFunction.Hash;
 
