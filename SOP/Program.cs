@@ -23,7 +23,7 @@ class main
         Byte[] Person2SharedKey;
         SWForDHKE.Stop();
 
-        // Initializes the Stopwatch used for time meassurements concerning keyGeneration
+        // Initializes the Stopwatch used for time meassurements concerning keyGeneration. This stopwatch will be stopped at severel points, for example before printing text.
         Stopwatch SWForKeyGenration = new Stopwatch();
 
         // Initialization of the Keysize for both the public and private keys
@@ -34,10 +34,9 @@ class main
         String secretMessage = "The secret message";
         SWForDHKE.Stop();
 
+        SWForDHKE.Start();
         // Starts the timer so we can see how long it takes for to genrate a random keyPair
         SWForKeyGenration.Start();
-
-        SWForDHKE.Start();
         // Creates a CNG (Cryptography Next Genration) implimentiation of the ECDH (Elliptic Curve Diffie-Hellman) algorithm for Person1 with a randomly generated keyPair consisting of both a public and a private key
         using (ECDiffieHellmanCng ECDHCNGForPerson1 = new ECDiffieHellmanCng(keySize))
         {
