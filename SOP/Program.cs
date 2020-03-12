@@ -155,7 +155,7 @@ class main
                 //Write("It took " + SWForDHKE.ElapsedTicks + " ticks to perform the DHKE." + Environment.NewLine + Environment.NewLine);
             }
         }
-        Write("The combined time it took to do 100 ECDHKE was: " + SWForDHKE.ElapsedMilliseconds);
+        Write("The combined time it took to do 500 ECDHKE was: " + SWForDHKE.ElapsedMilliseconds);
         // Acts as a buffer so you can see the output in the console before the program is terminated
         ReadKey();
     }
